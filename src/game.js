@@ -14,6 +14,8 @@ let currentRow = 0;
 let currentCol = 0;
 let selectedLetters = [];
 let targetWord = '';
+let wins = 0;
+let losses = 0;
 
 function getWordsFromCategory(category) {
     if (category === 'surprise') {
@@ -92,12 +94,16 @@ function submitGuess() {
     }
 
     if (guess === targetWord) {
+        wins++;
+        document.getElementById('wins').textContent = wins;
         document.getElementById('message').textContent = 'Congratulations! You guessed the word!';
         document.getElementById('category-select').disabled = true;
         disableInput();
     } else {
         currentRow++;
         if (currentRow >= 6) {
+            losses++;
+            document.getElementById('losses').textContent = losses;
             document.getElementById('message').textContent = `Game over! The word was ${targetWord}.`;
             disableInput();
         } else {
@@ -195,6 +201,35 @@ function backspace() {
     }
 }
 
+function resetGame() {
+    // Clear the board
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 5; j++) {
+            updateCell(i, j, '', 'white');
+        }
+    }
+    
+    // Reset keyboard colors
+    document.querySelectorAll('.key').forEach(key => {
+        key.classList.remove('green', 'yellow', 'gray');
+        key.disabled = false;
+    });
+    
+    // Reset game state
+    currentRow = 0;
+    currentCol = 0;
+    selectedLetters = [];
+    document.getElementById('submit-guess').disabled = true;
+    document.getElementById('backspace').disabled = false;
+    document.getElementById('category-select').disabled = false;
+    document.getElementById('message').textContent = '';
+    
+    // Select new word from current category
+    const category = document.getElementById('category-select').value;
+    targetWord = selectNewWord(category);
+    document.getElementById('mystery-word').textContent = targetWord;
+}
+
 // Initialize the game
 createBoard();
 createKeyboard();
@@ -205,3 +240,5 @@ document.getElementById('category-select').value = defaultCategory;
 targetWord = selectNewWord(defaultCategory);
 updateWordCount(defaultCategory);
 document.getElementById('mystery-word').textContent = targetWord;
+
+document.getElementById('new-game').addEventListener('click', resetGame);
