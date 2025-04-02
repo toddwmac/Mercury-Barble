@@ -1,11 +1,48 @@
-const words = ["CRANE", "APPLE"];  // Add more 5-letter words as needed
-const targetWord = words[Math.floor(Math.random() * words.length)].toUpperCase();
+const wordCategories = {
+    food: ["pizza", "bread", "juice", "bacon", "pasta"],
+    religion: ["faith", "grace", "saint", "deity", "karma"],
+    flowers: ["tulip", "daisy", "lilac", "poppy", "lotus"],
+    animals: ["tiger", "koala", "horse", "snake", "whale"],
+    geography: ["beach", "cliff", "ocean", "shore", "plain"],
+    colors: ["green", "black", "brown", "white", "peach"],
+    movies: ["scene", "actor", "stage", "drama", "movie"],
+    music: ["piano", "drums", "flute", "tempo", "brass"],
+    verbs: ["dance", "shine", "study", "laugh", "dream"]
+};
+
 let currentRow = 0;
 let currentCol = 0;
 let selectedLetters = [];
+let targetWord = '';
+
+function getWordsFromCategory(category) {
+    if (category === 'surprise') {
+        const allWords = Object.values(wordCategories).flat();
+        return allWords.filter(word => word.length === 5);
+    }
+    return wordCategories[category].filter(word => word.length === 5);
+}
+
+function updateWordCount(category) {
+    const wordCount = getWordsFromCategory(category).length;
+    document.getElementById('word-count').textContent = `(${wordCount} words)`;
+}
+
+function selectNewWord(category) {
+    const words = getWordsFromCategory(category);
+    return words[Math.floor(Math.random() * words.length)].toUpperCase();
+}
+
+function handleCategoryChange(e) {
+    const category = e.target.value;
+    targetWord = selectNewWord(category);
+    updateWordCount(category);
+    document.getElementById('mystery-word').textContent = targetWord;
+}
 
 document.getElementById('submit-guess').addEventListener('click', submitGuess);
 document.getElementById('backspace').addEventListener('click', backspace);
+document.getElementById('category-select').addEventListener('change', handleCategoryChange);
 
 function createBoard() {
     const board = document.getElementById('game-board');
@@ -56,6 +93,7 @@ function submitGuess() {
 
     if (guess === targetWord) {
         document.getElementById('message').textContent = 'Congratulations! You guessed the word!';
+        document.getElementById('category-select').disabled = true;
         disableInput();
     } else {
         currentRow++;
@@ -161,4 +199,9 @@ function backspace() {
 createBoard();
 createKeyboard();
 document.getElementById('submit-guess').disabled = true;
+
+const defaultCategory = 'surprise';
+document.getElementById('category-select').value = defaultCategory;
+targetWord = selectNewWord(defaultCategory);
+updateWordCount(defaultCategory);
 document.getElementById('mystery-word').textContent = targetWord;
