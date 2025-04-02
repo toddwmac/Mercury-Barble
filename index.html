@@ -9,6 +9,7 @@
 <body>
     <div class="game-container">
         <h1>Barble</h1>
+        <div class="score-display">Wins: <span id="wins">0</span> Losses: <span id="losses">0</span></div>
         <div class="category-selector">
             <select id="category-select">
                 <option value="surprise">Surprise Me!</option>
@@ -30,9 +31,6 @@
         <button id="backspace">Backspace</button>
         <p id="mystery-word"></p>
         <p id="message"></p>
-        <div class="score-container">
-            <p>Wins: <span id="wins">0</span> Losses: <span id="losses">0</span></p>
-        </div>
         <button id="new-game">New Game</button>
     </div>
     <script src="src/game.js"></script>
