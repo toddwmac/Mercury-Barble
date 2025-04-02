@@ -53,6 +53,13 @@ body {
     max-width: 500px;
 }
 
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin: 5px 0;
+}
+
 .key {
     width: 30px;
     height: 30px;

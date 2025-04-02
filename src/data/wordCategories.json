@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "totalWords": 63,
+        "lastUpdated": "2024-01-10"
+    },
+    "categories": {
+        "food": {
+            "name": "Food & Drink",
+            "count": 8,
+            "words": ["pizza", "bread", "juice", "bacon", "pasta", "curry", "sugar", "honey"]
+        },
+        "religion": {
+            "name": "Spirituality & Religion",
+            "count": 7,
+            "words": ["faith", "grace", "saint", "deity", "prayer", "karma", "devil"]
+        },
+        "flowers": {
+            "name": "Flowers",
+            "count": 6,
+            "words": ["tulip", "daisy", "lilac", "poppy", "maple", "lotus"]
+        },
+        "animals": {
+            "name": "Animals",
+            "count": 8,
+            "words": ["tiger", "koala", "eagle", "horse", "snake", "sheep", "whale", "mouse"]
+        },
+        "geography": {
+            "name": "Geography",
+            "count": 7,
+            "words": ["beach", "cliff", "ocean", "shore", "river", "delta", "plain"]
+        },
+        "colors": {
+            "name": "Colors",
+            "count": 7,
+            "words": ["green", "black", "brown", "white", "peach", "coral", "amber"]
+        },
+        "movies": {
+            "name": "Movies",
+            "count": 6,
+            "words": ["scene", "actor", "stage", "drama", "movie", "watch"]
+        },
+        "music": {
+            "name": "Music",
+            "count": 7,
+            "words": ["piano", "drums", "flute", "tempo", "brass", "notes", "chord"]
+        },
+        "verbs": {
+            "name": "Verbs",
+            "count": 7,
+            "words": ["dance", "shine", "study", "laugh", "dream", "sleep", "write"]
+        }
+    }
+}
